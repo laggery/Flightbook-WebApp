@@ -6,6 +6,7 @@ import { NewsComponent } from './news.component';
 import { environment } from 'src/environments/environment';
 import { NewsModule as NewsModuleLibrary} from 'flightbook-commons-library';
 import { TranslateModule } from '@ngx-translate/core';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [NewsComponent],
@@ -13,7 +14,8 @@ import { TranslateModule } from '@ngx-translate/core';
     CommonModule,
     NewsRoutingModule,
     NewsModuleLibrary.forRoot(environment),
-    TranslateModule.forChild()
+    TranslateModule.forChild(),
+    MatCardModule
   ]
 })
 export class NewsModule { }

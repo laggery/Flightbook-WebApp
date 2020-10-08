@@ -15,7 +15,7 @@
     <span class="header-spacer"></span>
     <button mat-button [matMenuTriggerFor]="menu"><mat-icon>account_circle</mat-icon></button>
       <mat-menu #menu="matMenu">
-        <a mat-menu-item [routerLink]="'/logout'">Logout</a>
+        <a mat-menu-item [routerLink]="'/login'" (click)="logout()">Logout</a>
         <a mat-menu-item [routerLink]="'/gliders'">Settings</a>
       </mat-menu>
   </mat-toolbar-row>
@@ -35,6 +35,8 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content fxFlexFill>
+    <div class="main">
     <router-outlet></router-outlet>
+  </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
