@@ -5,12 +5,17 @@ import { AuthGuardService } from 'flightbook-commons-library';
 const routes: Routes = [
   {
   path: '',
-  redirectTo: 'news',
+  redirectTo: 'dashboard',
   pathMatch: 'full'
 },
 {
-  path: 'news',
-  loadChildren: () => import('./news/news.module').then(m => m.NewsModule),
+  path: 'dashboard',
+  loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),
+  canActivate: [AuthGuardService]
+},
+{
+  path: 'places',
+  loadChildren: () => import('./place/place.module').then(m => m.PlaceModule),
   canActivate: [AuthGuardService]
 },
 {

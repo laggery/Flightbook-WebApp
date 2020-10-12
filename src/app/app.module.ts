@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NewsModule, HttpAuthInterceptor, HttpErrorInterceptor } from 'flightbook-commons-library';
+import { HttpAuthInterceptor, HttpErrorInterceptor, AccountModule } from 'flightbook-commons-library';
 import { environment } from 'src/environments/environment';
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -40,7 +40,7 @@ export function tokenGetter() {
     }),
     HttpClientModule,
     AppRoutingModule,
-    NewsModule.forRoot(environment),
+    AccountModule.forRoot(environment),
     FlexLayoutModule,
     BrowserAnimationsModule,
     MatToolbarModule,
