@@ -5,6 +5,7 @@ import * as _ from 'lodash';
 import { takeUntil } from 'rxjs/operators';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { PlaceFormComponent } from './place-form/place-form.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-place',
@@ -21,7 +22,8 @@ export class PlaceComponent implements OnInit {
 
   constructor(
     private placeService: PlaceService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private translate: TranslateService
   ) {
     this.places$ = this.placeService.getState();
 
@@ -71,14 +73,11 @@ export class PlaceComponent implements OnInit {
     },
       (async (error: any) => {
         // await loading.dismiss();
-        // if (error.status === 409) {
-        //   const alert = await this.alertController.create({
-        //     header: this.translate.instant('place.place'),
-        //     message: this.translate.instant('message.placeExist'),
-        //     buttons: [this.translate.instant('buttons.done')]
-        //   });
-        //   await alert.present();
-        // }
+        if (error.status === 409) {
+          this.dialogRef.componentInstance.showAlert = true;
+          this.dialogRef.componentInstance.errorOptions.type = 'critical';
+          this.dialogRef.componentInstance.errorOptions.title = this.translate.instant('message.placeExist');
+        }
       })
     );
   }
@@ -92,14 +91,11 @@ export class PlaceComponent implements OnInit {
     },
       (async (error: any) => {
         // await loading.dismiss();
-        // if (error.status === 409) {
-        //   const alert = await this.alertController.create({
-        //     header: this.translate.instant('place.place'),
-        //     message: this.translate.instant('message.placeExist'),
-        //     buttons: [this.translate.instant('buttons.done')]
-        //   });
-        //   await alert.present();
-        // }
+        if (error.status === 409) {
+          this.dialogRef.componentInstance.showAlert = true;
+          this.dialogRef.componentInstance.errorOptions.type = 'critical';
+          this.dialogRef.componentInstance.errorOptions.title = this.translate.instant('message.placeExist');
+        }
       })
     );
   }

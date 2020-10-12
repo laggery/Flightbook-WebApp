@@ -1,0 +1,21 @@
+<div class="alerts"
+    [ngClass]="{'critical':errorOptions.type == 'critical', 'non-critical':errorOptions.type == 'non-critical', 'information':errorOptions.type == 'information', 'help':errorOptions.type == 'help'}">
+    <table>
+        <tr>
+            <td valign="top">
+                <mat-icon class="material-icons" *ngIf="errorOptions.type == 'critical'">warning</mat-icon>
+                <mat-icon class="material-icons" *ngIf="errorOptions.type == 'non-critical'">warning</mat-icon>
+                <mat-icon class="material-icons" *ngIf="errorOptions.type == 'information'">information</mat-icon>
+                <mat-icon class="material-icons" *ngIf="errorOptions.type == 'help'">help</mat-icon>
+            </td>
+            <td class="mat-subheading-1" *ngIf="errorOptions.title != ''">{{errorOptions.title}}</td>
+            <td *ngIf="errorOptions.title == ''" class="alert-text">{{errorOptions.description}}</td>
+        </tr>
+        <tr *ngIf="errorOptions.description != null">
+            <td>&nbsp;</td>
+            <td class="mat-body-2">
+                {{errorOptions.description}}
+            </td>
+        </tr>
+    </table>
+</div>

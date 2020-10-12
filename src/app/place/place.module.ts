@@ -14,6 +14,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { PlaceFormComponent } from './place-form/place-form.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { ApplicationComponentsModule } from '../application-components/application-components.module';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { TranslateModule } from '@ngx-translate/core';
     TranslateModule.forChild(),
     PlaceModuleLibrary.forRoot(environment),
     FormsModule,
+    ApplicationComponentsModule,
     MatTableModule,
     MatButtonModule,
     MatIconModule,

@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
+import { ErrorOptions } from 'src/app/application-components/alert/alert.component';
 
 @Component({
   selector: 'app-place-form',
@@ -12,6 +13,8 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class PlaceFormComponent implements OnInit {
   place: Place;
+  showAlert = false;
+  errorOptions: ErrorOptions;
 
   savePlace = new EventEmitter();
 
@@ -20,6 +23,7 @@ export class PlaceFormComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) data: Place,
   ) {
     this.place = data;
+    this.errorOptions = new ErrorOptions();
    }
 
   ngOnInit(): void {

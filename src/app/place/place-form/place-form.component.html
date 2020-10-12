@@ -1,3 +1,4 @@
+<app-alert *ngIf="showAlert" [errorOptions]="errorOptions"></app-alert>
 <form #form="ngForm" (ngSubmit)="saveElement(form)">
     <mat-form-field appearance="fill">
         <mat-label>{{ 'place.name' | translate }}</mat-label>
