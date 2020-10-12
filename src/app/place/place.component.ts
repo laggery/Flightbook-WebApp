@@ -22,7 +22,7 @@ export class PlaceComponent implements OnInit {
 
   constructor(
     private placeService: PlaceService,
-    public dialog: MatDialog,
+    private dialog: MatDialog,
     private translate: TranslateService
   ) {
     this.places$ = this.placeService.getState();
