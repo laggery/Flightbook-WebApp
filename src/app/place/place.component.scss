@@ -1,0 +1,26 @@
+
+.place-page {
+    // overflow: auto;
+}
+.place-table {
+    margin-top: 12px;
+    // max-height: 80vh;
+    // overflow: auto;
+    width: 100%;
+}
+
+.place-table > table {
+    width: 100%;
+}
+
+.center-align {
+    text-align: center;
+}
+
+.add-button {
+    width: 190px;
+}
+
+.mat-row:nth-child(odd){
+    background-color:rgb(247 247 247)
+    }

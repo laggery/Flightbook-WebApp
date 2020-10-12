@@ -1,0 +1,12 @@
+<form #form="ngForm" (ngSubmit)="saveElement(form)">
+    <mat-form-field appearance="fill">
+        <mat-label>{{ 'place.name' | translate }}</mat-label>
+        <input required [(ngModel)]="place.name" name="name" matInput placeholder="{{ 'place.name' | translate }}" />
+     </mat-form-field>
+     <mat-form-field appearance="fill">
+        <mat-label>{{ 'place.altitude' | translate }}</mat-label>
+        <input [(ngModel)]="place.altitude" name="altitude" matInput placeholder="{{ 'place.altitude' | translate }}" type="number" />
+     </mat-form-field>
+     <button type="submit" mat-raised-button color="primary">{{ 'buttons.save' | translate }}</button>
+     <button type="button" mat-raised-button (click)="closeModal()">{{ 'buttons.cancel' | translate }}</button>
+  </form>
