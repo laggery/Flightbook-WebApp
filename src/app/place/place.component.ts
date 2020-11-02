@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PlaceService, Place } from 'flightbook-commons-library';
 import { Subject, Observable } from 'rxjs';
 import * as _ from 'lodash';
@@ -12,7 +12,7 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './place.component.html',
   styleUrls: ['./place.component.scss']
 })
-export class PlaceComponent implements OnInit {
+export class PlaceComponent implements OnInit, OnDestroy {
   unsubscribe$ = new Subject<void>();
   places$: Observable<Place[]>;
   private limit = 20;
@@ -43,6 +43,11 @@ export class PlaceComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  ngOnDestroy() {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
+
   openDialog(place: Place): void {
     if (!place) {
       place = new Place();
@@ -50,7 +55,7 @@ export class PlaceComponent implements OnInit {
       place = _.cloneDeep(place);
     }
     this.dialogRef = this.dialog.open(PlaceFormComponent, {
-      width: '500px',
+      width: '900px',
       data: place,
       disableClose: true
     });

@@ -14,6 +14,10 @@ const routes: Routes = [
   canActivate: [AuthGuardService]
 },
 {
+  path: 'gliders',
+  loadChildren: () => import('./glider/glider.module').then(m => m.GliderModule),
+  canActivate: [AuthGuardService]
+},{
   path: 'places',
   loadChildren: () => import('./place/place.module').then(m => m.PlaceModule),
   canActivate: [AuthGuardService]

@@ -1,7 +1,7 @@
-
 .place-page {
-    // overflow: auto;
+    margin-top: 12px;
 }
+
 .place-table {
     margin-top: 12px;
     // max-height: 80vh;
@@ -17,10 +17,6 @@
     text-align: center;
 }
 
-.add-button {
-    width: 190px;
-}
-
 .mat-row:nth-child(odd){
     background-color:rgb(247 247 247)
-    }
+}

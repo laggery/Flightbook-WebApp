@@ -1,0 +1,52 @@
+<div class="glider-page">
+    <mat-sidenav-container fxFlexFill>
+        <mat-sidenav #sidenav mode="side" opened="true">
+            <app-glider-filter></app-glider-filter>
+        </mat-sidenav>
+
+        <mat-sidenav-content>
+            <button *ngIf="!sidenav.opened" class="filter-button" mat-button (click)="sidenav.toggle()"><mat-icon>arrow_forward_ios</mat-icon></button>
+            <button *ngIf="sidenav.opened" class="filter-button" mat-button (click)="sidenav.toggle()"><mat-icon>arrow_back_ios</mat-icon></button>
+            <div class="glider-table">
+                <table mat-table [dataSource]="gliders$">
+                    <!-- Brand Column -->
+                    <ng-container matColumnDef="brand">
+                        <th mat-header-cell *matHeaderCellDef>{{ 'glider.brand' | translate }}</th>
+                        <td mat-cell *matCellDef="let element"> {{element.brand}} </td>
+                    </ng-container>
+        
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef>{{ 'glider.name' | translate }}</th>
+                        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>
+
+                    <!-- Tandem Column -->
+                    <ng-container matColumnDef="tandem">
+                        <th mat-header-cell *matHeaderCellDef>{{ 'glider.tandem' | translate }}</th>
+                        <td mat-cell *matCellDef="let element"> <span class="gliderTandem" *ngIf="element.tandem; else noTandem">{{ 'buttons.yes' | translate }}</span>
+                            <ng-template #noTandem><span class="gliderTandem">{{ 'buttons.no' | translate }}</span></ng-template> </td>
+                    </ng-container>
+
+                    <!-- NbFlights Column -->
+                    <ng-container matColumnDef="flights">
+                        <th mat-header-cell *matHeaderCellDef>{{ 'statistics.nbflight' | translate }}</th>
+                        <td mat-cell *matCellDef="let element"> {{element.nbFlights}} </td>
+                    </ng-container>
+
+                    <!-- Flighthour Column -->
+                    <ng-container matColumnDef="time">
+                        <th mat-header-cell *matHeaderCellDef>{{ 'statistics.flighthour' | translate }}</th>
+                        <td mat-cell *matCellDef="let element"> {{element.time || "0" | hoursFormat}} </td>
+                    </ng-container>
+        
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openDialog(row)"></tr>
+                </table>
+            </div>
+            <footer>
+                Your sticky footer with a variable height.
+              </footer>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

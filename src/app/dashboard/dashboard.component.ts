@@ -68,7 +68,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   openNewsDialog(): void {
     const dialogRef = this.dialog.open(NewsComponent, {
-      width: '500px',
+      width: '900px',
       maxHeight: '90vh'
     });
   }

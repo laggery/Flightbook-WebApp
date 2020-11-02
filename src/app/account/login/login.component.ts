@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.accountService.login(this.loginData).pipe(takeUntil(this.unsubscribe$)).subscribe(async resp => {
         localStorage.setItem('access_token', resp.access_token);
         localStorage.setItem('refresh_token', resp.refresh_token);
-        this.router.navigate(['news']);
+        this.router.navigate(['dashboard']);
       },
         (async (error: any) => {
           // await loading.dismiss();
