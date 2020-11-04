@@ -5,6 +5,8 @@
 
 .glider-table {
     width: 100%;
+    max-height: calc(92vh - 56px);
+    overflow: auto;
 }
 
 .add-button {

@@ -44,9 +44,11 @@
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openDialog(row)"></tr>
                 </table>
             </div>
-            <footer>
-                Your sticky footer with a variable height.
-              </footer>
+            <mat-paginator [length]="pager.totalItems"
+              [pageSize]="pager.itemsPerPage"
+              [pageSizeOptions]="[20, 50, 100]"
+              (page)="handlePage($event)">
+            </mat-paginator>
         </mat-sidenav-content>
     </mat-sidenav-container>
 </div>

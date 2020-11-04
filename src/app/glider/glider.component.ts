@@ -1,9 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { GliderService, Glider } from 'flightbook-commons-library';
+import { GliderService, Glider, Pager } from 'flightbook-commons-library';
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { Subject, Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-glider',
@@ -13,6 +14,7 @@ import { takeUntil } from 'rxjs/operators';
 export class GliderComponent implements OnInit, OnDestroy {
   unsubscribe$ = new Subject<void>();
   gliders$: Observable<Glider[]>;
+  pager = new Pager();
   private limit = 20;
 
   displayedColumns: string[] = ['brand', 'name', 'tandem', 'flights', 'time'];
@@ -26,6 +28,10 @@ export class GliderComponent implements OnInit, OnDestroy {
     if (this.gliderService.getValue().length === 0) {
       this.getGliders();
     }
+
+    this.gliderService.getPager({ limit: this.limit }).pipe(takeUntil(this.unsubscribe$)).subscribe(async (res: Pager) => {
+      this.pager = res;
+    });
   }
 
   ngOnInit(): void {
@@ -42,6 +48,16 @@ export class GliderComponent implements OnInit, OnDestroy {
     }, async (error: any) => {
       // this.isLoading = false;
     });
+  }
+
+  handlePage(event: PageEvent) {
+    let offset = event.pageIndex * event.pageSize;
+    this.gliderService.getGliders({ limit: event.pageSize, offset: offset, clearStore: true }).pipe(takeUntil(this.unsubscribe$)).subscribe(async (res: Glider[]) => {
+      // this.isLoading = false;
+    }, async (error: any) => {
+      // this.isLoading = false;
+    });
+    return event;
   }
 
   openDialog(glider: Glider): void {

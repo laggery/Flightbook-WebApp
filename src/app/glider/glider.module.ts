@@ -17,6 +17,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { GliderFilterComponent } from './glider-filter/glider-filter.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { GliderFilterComponent } from './glider-filter/glider-filter.component';
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatPaginatorModule
   ]
 })
 export class GliderModule { }
