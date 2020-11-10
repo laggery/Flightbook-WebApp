@@ -1,0 +1,73 @@
+
+.flight-page {
+    overflow: hidden;
+}
+
+.flight-table {
+    width: 100%;
+    overflow: auto;
+}
+
+.add-button {
+    margin-bottom: 12px;
+}
+
+.flight-table > table {
+    width: 100%;
+}
+
+.description {
+    max-width: 200px;
+}
+
+.mat-row:nth-child(odd){
+    background-color:rgb(247 247 247)
+}
+
+.mat-sidenav {
+    width: 304px;
+    min-width: 304px;
+}
+
+.mat-sidenav-container {
+    height: 92vh;
+}
+
+.footer {
+    bottom: 0px;
+    position: sticky;
+    z-index: 10;
+}
+
+.footer .mat-icon{
+    position: absolute;
+    top: 16px;
+    left: 16px;
+}
+
+.footer .mat-icon.pdf{
+    left: 55px;
+}
+
+.filter-button {
+    position: fixed;
+    top: 50%;
+    padding-right: 0px;
+    padding-left: 2px;
+    border-top: 1px #b4b4b4 solid;
+    border-right: 1px #b4b4b4 solid;
+    border-bottom: 1px #b4b4b4 solid;
+    border-top-right-radius: 14px;
+    border-top-left-radius: 0px;
+    border-bottom-right-radius: 14px;
+    border-bottom-left-radius: 0px;
+    min-width: unset;
+    width: 24px;
+    background-color: white;
+    color: #b4b4b4;
+}
+
+.filter-button:hover {
+    color: black;
+    zoom: 1.2;
+}
