@@ -62,6 +62,7 @@
         "longset": "Vol le plus long"
     },
     "flight": {
+        "number": "No",
         "glider": "Parapente",
         "date": "Date",
         "start": "Décollage",

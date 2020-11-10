@@ -55,6 +55,7 @@
         "solo": "Solo"
     },
     "flight": {
+        "number": "No",
         "glider": "Vela",
         "date": "Data",
         "start": "Decollo",
