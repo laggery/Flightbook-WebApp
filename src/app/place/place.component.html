@@ -1,4 +1,4 @@
-<div class="place-page">
+<div #table class="place-page">
     <div class="center-align">
         <button mat-fab color="primary" (click)="openDialog(null)" aria-label="Add place">
             <mat-icon>add</mat-icon>
@@ -23,4 +23,9 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openDialog(row)"></tr>
         </table>
     </div>
+    <mat-paginator [length]="pager.totalItems"
+        [pageSize]="pager.itemsPerPage"
+        [pageSizeOptions]="[20, 50, 100]"
+        (page)="handlePage($event)">
+    </mat-paginator>
 </div>

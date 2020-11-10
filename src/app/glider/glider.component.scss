@@ -1,11 +1,9 @@
 .glider-page {
-    // margin-top: 12px;
     overflow: hidden;
 }
 
 .glider-table {
     width: 100%;
-    max-height: calc(92vh - 56px);
     overflow: auto;
 }
 
@@ -28,6 +26,12 @@
 
 .mat-sidenav-container {
     height: 92vh;
+}
+
+.mat-paginator {
+    bottom: 0px;
+    position: sticky;
+    z-index: 10;
 }
 
 .filter-button {

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { GliderService, Glider, Pager } from 'flightbook-commons-library';
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
@@ -18,6 +18,7 @@ export class GliderComponent implements OnInit, OnDestroy {
   private limit = 20;
 
   displayedColumns: string[] = ['brand', 'name', 'tandem', 'flights', 'time'];
+  @ViewChild('table', {read: ElementRef}) table: ElementRef;
 
   constructor(
     private gliderService: GliderService,
@@ -51,6 +52,7 @@ export class GliderComponent implements OnInit, OnDestroy {
   }
 
   handlePage(event: PageEvent) {
+    this.table.nativeElement.scrollIntoView();
     let offset = event.pageIndex * event.pageSize;
     this.gliderService.getGliders({ limit: event.pageSize, offset: offset, clearStore: true }).pipe(takeUntil(this.unsubscribe$)).subscribe(async (res: Glider[]) => {
       // this.isLoading = false;

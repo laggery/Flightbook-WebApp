@@ -15,6 +15,7 @@ import { MatInputModule } from '@angular/material/input';
 import { PlaceFormComponent } from './place-form/place-form.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { ApplicationComponentsModule } from '../application-components/application-components.module';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { ApplicationComponentsModule } from '../application-components/applicati
     MatIconModule,
     MatDialogModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatPaginatorModule
   ]
 })
 export class PlaceModule { }

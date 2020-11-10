@@ -1,11 +1,12 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { PlaceService, Place } from 'flightbook-commons-library';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import { PlaceService, Place, Pager } from 'flightbook-commons-library';
 import { Subject, Observable } from 'rxjs';
 import * as _ from 'lodash';
 import { takeUntil } from 'rxjs/operators';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { PlaceFormComponent } from './place-form/place-form.component';
 import { TranslateService } from '@ngx-translate/core';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-place',
@@ -15,8 +16,10 @@ import { TranslateService } from '@ngx-translate/core';
 export class PlaceComponent implements OnInit, OnDestroy {
   unsubscribe$ = new Subject<void>();
   places$: Observable<Place[]>;
+  pager = new Pager();
   private limit = 20;
   private dialogRef: MatDialogRef<PlaceFormComponent>;
+  @ViewChild('table', {read: ElementRef}) table: ElementRef;
 
   displayedColumns: string[] = ['name', 'altitude'];
 
@@ -30,6 +33,10 @@ export class PlaceComponent implements OnInit, OnDestroy {
     if (this.placeService.getValue().length === 0) {
       this.initialDataLoad();
     }
+
+    this.placeService.getPager({ limit: this.limit }).pipe(takeUntil(this.unsubscribe$)).subscribe(async (res: Pager) => {
+      this.pager = res;
+    });
   }
 
   private async initialDataLoad() {
@@ -46,6 +53,17 @@ export class PlaceComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
+  }
+
+  handlePage(event: PageEvent) {
+    this.table.nativeElement.scrollIntoView();
+    let offset = event.pageIndex * event.pageSize;
+    this.placeService.getPlaces({ limit: event.pageSize, offset: offset, clearStore: true }).pipe(takeUntil(this.unsubscribe$)).subscribe(async (res: Place[]) => {
+      // this.isLoading = false;
+    }, async (error: any) => {
+      // this.isLoading = false;
+    });
+    return event;
   }
 
   openDialog(place: Place): void {

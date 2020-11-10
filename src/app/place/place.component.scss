@@ -4,8 +4,6 @@
 
 .place-table {
     margin-top: 12px;
-    // max-height: 80vh;
-    // overflow: auto;
     width: 100%;
 }
 
@@ -19,4 +17,10 @@
 
 .mat-row:nth-child(odd){
     background-color:rgb(247 247 247)
+}
+
+.mat-paginator {
+    bottom: 0px;
+    position: sticky;
+    z-index: 10;
 }
